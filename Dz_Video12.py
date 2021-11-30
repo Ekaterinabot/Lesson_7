@@ -6,13 +6,11 @@ class Car:
     name = "mercedez"               # создаем атрибуты класса
     make = 2010
     model = "c200"
- 
-    def start(self):            # создаем методы класса
-        print ("Заводим двигатель")
- 
-    def stop(self):
-        print ("Отключаем двигатель") 
-        
+    
+from sys import stderr 
+print("заводим двигатель", file=stderr)
+print("отключаем двигатель", file=stderr)
+
 # Создаем объект класса Car под названием car_a
 car_a = Car()
  
@@ -20,7 +18,7 @@ car_a = Car()
 car_b = Car()
 print(type(car_b))
 print(type(car_a))
-car_b.start()
+
 print(car_b.model)
 print(dir(car_b))  # чтоб посмотреть на все атрибуты объекта car_b
                    # встроенная функция
@@ -46,41 +44,25 @@ print(car_b.car_count)
 
 # 2) Придумать по 2-3 действия каждому представителю.
 # Добавим Быстрая езда и медленная езда.
-def fast(self):
-    print ("Быстрая езда")
- 
-def slow(self):
-    print ("Медленная езда") 
-    
+# С помощью конструктора - метод __init__
 class Car:
-    car_count = 0  
-    
-    def fast(self, name, make, model):    
-        print("Быстрая езда")
+    def __init__(self, name, make, model):
         self.name = name
         self.make = make
         self.model = model
-        Car.car_count += 1
-        
-car_a = Car()      
-car_a.fast("Toyota", 2015, "Corrola")
-print(car_a.name)  
-print(car_a.car_count)
+car_a = Car("Toyota", 2015, "Corrola")      
+print("Быстрая езда")
+print(car_a.name) 
 
 class Car:
-    car_count = 0  
-    
-    def slow(self, name, make, model):    
-        print("Медленная езда")
+    def __init__(self, name, make, model):
         self.name = name
         self.make = make
         self.model = model
-        Car.car_count += 1
-        
-car_b = Car()      
-car_b.slow("Shevrolet", 2013, "Spark")  
-print(car_b.name)  
-print(car_b.car_count)
+car_a = Car("Shevrolet", 2013, "Spark")      
+print("Медленная езда")
+print(car_a.name)
+
 
 
 # Такая структура выбрана, потому что увидела понятный пример ООП
@@ -88,11 +70,12 @@ print(car_b.car_count)
 # И еще потому что автомобиль заводиться, медленно и быстро ездит 
 # прямо в программе.
 
+заводим двигатель
+отключаем двигатель
 <class '__main__.Car'>
 <class '__main__.Car'>
-Заводим двигатель
 c200
-['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'make', 'model', 'name', 'start', 'stop']
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'make', 'model', 'name']
 Двигатель заведен
 Toyota
 1
@@ -101,10 +84,8 @@ Shevrolet
 2
 Быстрая езда
 Toyota
-1
-Медленная езда
+Медлен�ая езда
 Shevrolet
-1
 
 
 ...Program finished with exit code 0
